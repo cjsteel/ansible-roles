@@ -12,8 +12,16 @@ for paths in ['./plugins/lookup', './plugins/callback', './plugins/filter']:
 for files in glob.glob('./roles/*/lookup_plugins/*.py'):
     shutil.move(files, './plugins/lookup')
 
+for filename in glob.glob('./plugins/lookup/*.py'):
+	new_name = re.sub(r'manala_', r'', filename)
+	os.rename(filename, new_name)
+
 for files in glob.glob('./roles/*/callback_plugins/*.py'):
     shutil.move(files, './plugins/callback')
+
+for filename in glob.glob('./plugins/callback/*.py'):
+	new_name = re.sub(r'manala_', r'', filename)
+	os.rename(filename, new_name)
 
 for files in glob.glob('./roles/*/filter_plugins/*.py'):
     shutil.move(files, './plugins/filter')
@@ -21,6 +29,9 @@ for files in glob.glob('./roles/*/filter_plugins/*.py'):
 for filename in glob.glob("./plugins/*/*.py"):
     new_name = re.sub(r'manala_', r'', filename)
     os.rename(filename, new_name)
+
+for files in glob.glob('./roles/*/library/*.py'):
+	shutil.move(files, './plugins/modules')
 
 for paths in ['./roles/*/*_plugins/',
               './roles/*/.manala/',
